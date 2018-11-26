@@ -1,7 +1,5 @@
 # produce histogram plot of global active power over time
 
-library(lubridate)
-
 # set working directory
 setwd("/Users/jasonbartley/Development/courses/ExData_Plotting1")
 
@@ -24,9 +22,26 @@ data <- subset(data, data$Date %in% c("2/1/2007", "2/2/2007"))
 data$Date_Time <- as.POSIXct(paste(data$Date, data$Time), format="%m/%d/%Y %H:%M:%S")
 
 #plot
-with(data, plot(Date_Time, Global_active_power,
+with(data, plot(Date_Time, Sub_metering_3,
                 type="l", xlab="",
-                ylab="Global Active Power (kilowatts)"))
+                ylab="Energy sub metering",
+                col="blue"))
+
+lines(data$Date_Time,data$Sub_metering_2, col = "red")
+lines(data$Date_Time,data$Sub_metering_1)
+
+# add legend
+legend("topright", 
+       legend=c("Sub_metering_1", "Sub_metering_2", "sub_metering_3"),
+       col=c("black", "red", "blue"),
+       lty=1)
+
+# export png - 480 x 480
+dev.copy(png,'plot3.png')
+dev.off()
+table(data$Sub_metering_1
+      )
+
 
 
 

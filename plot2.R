@@ -1,7 +1,5 @@
 # produce histogram plot of global active power over time
 
-library(lubridate)
-
 # set working directory
 setwd("/Users/jasonbartley/Development/courses/ExData_Plotting1")
 
