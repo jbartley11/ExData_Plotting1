@@ -38,26 +38,3 @@ legend("topright",
 # export png - 480 x 480
 dev.copy(png,'plot3.png')
 dev.off()
-table(data$Sub_metering_1
-      )
-
-
-
-
-
-
-
-# make copy for testing
-data2 <- data
-head(data2)
-summary(data)
-hist(data2$Global_active_power,
-     col="red",
-     main="Global Active Power",
-     xlab="Global Active Power (kilowatts)")
-
-str(data)
-
-# export png - 480 x 480
-dev.copy(png,'plot2.png')
-dev.off()

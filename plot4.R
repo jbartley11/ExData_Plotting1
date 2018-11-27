@@ -21,7 +21,21 @@ data <- subset(data, data$Date %in% c("1/2/2007", "2/2/2007"))
 # add datetime column
 data$Date_Time <- as.POSIXct(paste(data$Date, data$Time), format="%d/%m/%Y %H:%M:%S")
 
-#plot
+# set 2x2 grid for plots
+par(mfrow=c(2,2))
+
+# plot 1 - Global Active Power over time
+with(data, plot(Date_Time, Global_active_power,
+                type="l", xlab="",
+                ylab="Global Active Power (kilowatts)"))
+
+# plot 2 - Voltage over time
+with(data, plot(Date_Time, Voltage,
+                type="l",
+                xlab="datetime",
+                ylab="Voltage"))
+
+# plot 3 - Energy sub metering
 with(data, plot(Date_Time, Sub_metering_1,
                 type="l", xlab="",
                 ylab="Energy sub metering"))
@@ -29,34 +43,18 @@ with(data, plot(Date_Time, Sub_metering_1,
 lines(data$Date_Time,data$Sub_metering_2, col = "red")
 lines(data$Date_Time,data$Sub_metering_3, col = "blue")
 
-# add legend
 legend("topright", 
        legend=c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"),
        col=c("black", "red", "blue"),
-       lty=1)
+       lty=1,
+       bty = "n")
+
+# plot 4 - Global reactive power over time
+with(data, plot(Date_Time, Global_reactive_power,
+                type="l",
+                xlab="datetime",
+                ylab="Global_reactive_power"))
 
 # export png - 480 x 480
-dev.copy(png,'plot3.png')
-dev.off()
-
-
-
-
-
-
-
-
-# make copy for testing
-data2 <- data
-head(data2)
-summary(data)
-hist(data2$Global_active_power,
-     col="red",
-     main="Global Active Power",
-     xlab="Global Active Power (kilowatts)")
-
-str(data)
-
-# export png - 480 x 480
-dev.copy(png,'plot2.png')
+dev.copy(png,'plot4.png')
 dev.off()
