@@ -16,7 +16,7 @@ data <- read.table("./data/household_power_consumption.txt",
                    na.strings=c("?"))
 
 # subset for 2007-02-01 and 2007-02-02
-data <- subset(data, data$Date %in% c("2/1/2007", "2/2/2007"))
+data <- subset(data, data$Date %in% c("1/2/2007", "2/2/2007"))
 
 # plot histogram
 hist(data$Global_active_power,

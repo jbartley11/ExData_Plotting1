@@ -16,23 +16,22 @@ data <- read.table("./data/household_power_consumption.txt",
                    na.strings=c("?"))
 
 # subset for 2007-02-01 and 2007-02-02
-data <- subset(data, data$Date %in% c("2/1/2007", "2/2/2007"))
+data <- subset(data, data$Date %in% c("1/2/2007", "2/2/2007"))
 
 # add datetime column
-data$Date_Time <- as.POSIXct(paste(data$Date, data$Time), format="%m/%d/%Y %H:%M:%S")
+data$Date_Time <- as.POSIXct(paste(data$Date, data$Time), format="%d/%m/%Y %H:%M:%S")
 
 #plot
-with(data, plot(Date_Time, Sub_metering_3,
+with(data, plot(Date_Time, Sub_metering_1,
                 type="l", xlab="",
-                ylab="Energy sub metering",
-                col="blue"))
+                ylab="Energy sub metering"))
 
 lines(data$Date_Time,data$Sub_metering_2, col = "red")
-lines(data$Date_Time,data$Sub_metering_1)
+lines(data$Date_Time,data$Sub_metering_3, col = "blue")
 
 # add legend
 legend("topright", 
-       legend=c("Sub_metering_1", "Sub_metering_2", "sub_metering_3"),
+       legend=c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"),
        col=c("black", "red", "blue"),
        lty=1)
 

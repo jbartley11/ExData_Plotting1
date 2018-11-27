@@ -16,10 +16,10 @@ data <- read.table("./data/household_power_consumption.txt",
                    na.strings=c("?"))
 
 # subset for 2007-02-01 and 2007-02-02
-data <- subset(data, data$Date %in% c("2/1/2007", "2/2/2007"))
+data <- subset(data, data$Date %in% c("1/2/2007", "2/2/2007"))
 
 # add datetime column
-data$Date_Time <- as.POSIXct(paste(data$Date, data$Time), format="%m/%d/%Y %H:%M:%S")
+data$Date_Time <- as.POSIXct(paste(data$Date, data$Time), format="%d/%m/%Y %H:%M:%S")
 
 #plot
 with(data, plot(Date_Time, Global_active_power,
